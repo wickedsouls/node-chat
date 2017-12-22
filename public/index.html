@@ -10,11 +10,44 @@
     body{
       font-family:monospace;
     }
+    ul{
+      list-style: none;
+      width:70%;
+      border:1px solid dimgrey;
+      height:40vh;
+      padding:5px;
+      overflow-y:scroll;
+    }
+    li{
+      font-size:20px;
+      margin-bottom:4px;
+      padding:5px;
+    }
+    .message{
+      width:70%;
+      display: flex;
+      justify-content: space-between;
+      height:30px;
+    }
+    input{
+      width:70%;
+      font-size:22px;
+    }
+    button{
+      width:25%;
+      font-size:22px;
+    }
   </style>
 </head>
 <body>
-  <h1>Live Chat Application</h1>
-  <h2></h2>
+  <h1>🎄⭐Live Chat Application⭐🎄</h1>
+  <ul>
+    <li>kaledai dovanai</li>
+  </ul>
+  <div class="message">
+    <input type="text" placeholder="message">
+    <button>send</button>
+  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/index.js"></script>

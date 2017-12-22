@@ -12,32 +12,37 @@ const io = socketIO(server);
 
 app.use(express.static(publicPath));
 
-io.on('connection', function(socket){
+
+
+io.on('connection', function (socket) {
 
   console.log('New user connected');
 
-  socket.on('disconnect', function(){
-    console.log('User disconected from the server')
+  socket.on('user', function (e) {
+    console.log(`user ${e.user} has connected`);
+    io.emit('userList', {user:e.user})
   });
 
-  socket.emit('newMessage', {
-    from:'wicked@troll.org',
-    text:'whats up mon???!',
-    createdAt:2017
+  socket.on('disconnect', function (e) {
+    console.log('User disconected from the server');
+    io.emit('dcUsers', 'user has disconnected')
   });
 
-  socket.on('createEmail', (e)=>{
-    console.log(e)
-  });
 
-  socket.on('createMessage', (m)=>{
-    console.log('message',m)
+
+  socket.on('createMessage', (m) => {
+    console.log('message', m);
+    io.emit('newMessage', {
+      user: m.user,
+      message: m.message,
+      createdAt: new Date().getTime()
+    });
+    console.log('----')
   })
 
 });
 
 
-
-server.listen(port, ()=>{
+server.listen(port, () => {
   console.log(`listening on port ${3000}`)
 });
