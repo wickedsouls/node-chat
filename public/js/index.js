@@ -24,6 +24,7 @@ socket.on('newMessage', function (e) {
   }else{
     chatBox.insertAdjacentHTML('beforeend', `<li style="">user${e.user}: ${e.message}</li>`)
   }
+  chatBox.scrollTop=chatBox.scrollHeight;
 });
 
 socket.on('userList', function (e) {
